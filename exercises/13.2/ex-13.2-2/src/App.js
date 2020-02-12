@@ -22,8 +22,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <button onClick={this.clickDoguitcho}>{this.state.showDoguitchos? "Fechar Doguitchos" : "Abrir Doguitchos"}</button>
-        {this.state.showDoguitchos ? <Doguitchos/ > : <p>Nada sem Doguitchos por enquantos!</p>}
+        <button onClick={this.clickDoguitcho}>{this.state.showDoguitchos ? "Fechar Doguitchos" : "Abrir Doguitchos"}</button>
+        {this.state.showDoguitchos ? <Doguitchos /> : <p>Nada sem Doguitchos por enquantos!</p>}
       </div>
     );
   }
@@ -42,9 +42,9 @@ class Doguitchos extends React.Component {
   doguitchosLoad = () => {
     let doguitchoArray = this.state.doguitchoArray;
     console.log(doguitchoArray)
-    fetch(API_URL, { headers: { Accept: "application/json" }})
-    .then(response => response.json())
-    .then(data => this.addItemToDoguitchosArray(data.message))
+    fetch(API_URL, { headers: { Accept: "application/json" } })
+      .then(response => response.json())
+      .then(data => this.addItemToDoguitchosArray(data.message))
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -54,8 +54,8 @@ class Doguitchos extends React.Component {
 
   addItemToDoguitchosArray = (message) => {
     this.setState(({ doguitchoArray, doguitchoName }) => {
-      const newDoguitchoArray = doguitchoArray.length >= 10 ?  doguitchoArray.slice(1) : doguitchoArray;
-      const newDoguitcho = { name: doguitchoName, url: message};
+      const newDoguitchoArray = doguitchoArray.length >= 10 ? doguitchoArray.slice(1) : doguitchoArray;
+      const newDoguitcho = { name: doguitchoName, url: message };
 
       return ({ doguitchoArray: [...newDoguitchoArray, newDoguitcho] })
     })
@@ -63,7 +63,7 @@ class Doguitchos extends React.Component {
 
   changeHandler = event => {
     const { name, value } = event.target;
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   }
 
   componentWillUnmount() {
@@ -74,7 +74,7 @@ class Doguitchos extends React.Component {
 
   componentDidMount() {
     this.setState({
-      doguitchoName:  JSON.parse(localStorage.getItem("doguitchosName")) || "",
+      doguitchoName: JSON.parse(localStorage.getItem("doguitchosName")) || "",
       doguitchoArray: JSON.parse(localStorage.getItem("doguitchosArray")) || []
     })
   }
@@ -84,27 +84,33 @@ class Doguitchos extends React.Component {
     return (
       <div className="container">
         <div className="container">
-        Nome do Doguitchos
+          Nome do Doguitchos
         <input
-          name="doguitchoName"
-          type="text"
-          value={this.state.doguitchoName}
-          onChange={this.changeHandler}
-          maxLength="40"
-        />
+            name="doguitchoName"
+            type="text"
+            value={this.state.doguitchoName}
+            onChange={this.changeHandler}
+            maxLength="40"
+            placeHolder="digite o nome do doguitcho"
+          />
         </div>
         <div className="container">
-          {this.state.doguitchoName !== "" ?
-            <button onClick={this.doguitchosLoad}>Buscar doguitcho</button> :
-            <p>Digite um nome para buscar o Doguitcho</p>
+          {
+            <button onClick={this.doguitchosLoad}>Buscar doguitcho</button>
           }
         </div>
         <div className="container">
-          <ul>
-            {this.state.doguitchoArray.map((object) => {
-              return <li key={object.url}>{object.name}</li>;
-            })}
-          </ul>
+
+          {this.state.doguitchoArray.map((object) => {
+            return (
+              <ul>
+                <img src={object.url} alt={object.name} />
+                <br />
+                <span>{object.name}</span>
+
+              </ul>
+            )
+          })}
         </div>
       </div>
     );
