@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link type="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <form >
+  <fieldset>
+    <legend>Formulário de Currículo</legend>
+    <div>
+    <label for="">Nome: </label>
+    <input type="text" required="required" maxlength="40" placeholder="digite seu nome"
+    name="nome">
+  </div>
+  <div>
+    <label for="">Email</label>
+    <input type="email" required="required" maxlength="50" name="email"
+    placeholder="digite seu email" id="email">
+  </div>
+  <div>
+    <label for="">CPF: </label>
+    <input id="cpf" type="text" required="required" maxlength="14"
+    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="123.456.789-00" name="cpf">
+  </div>
+  <div>
+    <label for="">Endereço: </label>
+    <input type="text" maxlength="200" required="required" name="endereço">
+  </div>
+  <div>
+    <label for="">Cidade: </label>
+    <input type="text" required="required" maxlength="28" name="cidade">
+  </div>
+  <div>
+    <label for="">Estado: </label>
+    <select required="required" name="estado" id="estado">
+        <option selected='' value=''> Selecione</option>
+    </select>
+  </div>
+  <div>
+    <label for='casa'><input name="lar" id="casa" value="casa" type="radio">
+    Casa</label>
+    <label for='apt'><input name="lar" id="apt" value="apt" type="radio"> Apartamento</label>
+  </div>
+  </fieldset>
+  <fieldset>
+    <legend>Dados do seu último emprego</legend>
+    <div>
+    <label for="">Resumo do Currículo</label><br>
+    <textarea name="curriculo" required="required" rows="10" cols="40"
+    placeholder="Fale sobre suas experiências" maxlength="1000"></textarea>
+  </div>
+  <div>
+    <label for="">Cargo: </label>
+    <input type="text" required="required" maxlength="40">
+  </div>
+  <div>
+    <label for="">Descrição do cargo: </label><br>
+    <textarea required="required" maxlength="500" rows="10" cols="40"
+    placeholder="Conte mais sobre seu cargo"></textarea>
+  </div>
+  <div>
+    <label for="">Data de início: </label>
+    <input type="date" required="required">
+  </div>
+  </fieldset>
+  <input type="submit">
+</form>
+<script src="script.js"></script>
+</body>
+</html>

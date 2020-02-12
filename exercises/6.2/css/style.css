@@ -1,0 +1,11 @@
+* {
+  outline: 1px solid red;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+}
+
+.lh-condensed { line-height: 1.25; }
