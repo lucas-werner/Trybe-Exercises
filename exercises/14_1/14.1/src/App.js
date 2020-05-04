@@ -40,7 +40,7 @@ class App extends Component {
           <Alert
             handleClick={(selected) => this.handleClick(selected)}
           >
-            {{ list: content, timeSeconds: 2000 }}
+            {{ list: content }}
           </Alert>}
       </div>
     )
