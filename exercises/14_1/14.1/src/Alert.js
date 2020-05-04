@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import './Alert.css';
 
 const Alert = (props) => {
-  const { hideComponent } = props;
-  const {title, content, timeSeconds} = props.children
-  setTimeout(() => hideComponent(), timeSeconds);
+  const { handleClick } = props;
+  const { list } = props.children  
   return (
     <div className='Alert'>
-      <h1>{title}</h1>
-      <p>{content}</p>
+      {list.map(({item, id}) => <div key={id} onClick={e => handleClick(e.target.innerText)}>
+        {item}
+        </div>)}
     </div>
   )
 }
@@ -17,7 +17,10 @@ const Alert = (props) => {
 export default Alert;
 
 Alert.propTypes = {
-  content: PropTypes.string,
-  contentTitle: PropTypes.string,
+  children: PropTypes.shape({
+    title: PropTypes.string,
+    list: PropTypes.string,
+    timeSeconds: PropTypes.number,
+  }),
   hideComponent: PropTypes.func,
 }

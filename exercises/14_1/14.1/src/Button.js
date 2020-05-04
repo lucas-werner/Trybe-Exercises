@@ -5,8 +5,7 @@ const Button = ({ showComponent, isDisable, content }) => {
 
   return (
     <button
-      type="button"
-      disabled={isDisable}
+      type="button"    
       onClick={() => showComponent()}
     >
       {content}

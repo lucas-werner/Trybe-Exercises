@@ -8,33 +8,39 @@ class App extends Component {
 
     this.state = {
       showModal: false,
-      isDisableButton: false,
+      selected: 'a',    
     }
   }
 
-  changeTitle = (value) => {
-    this.setState({ title: value })
-  }
-
-  changeShowComponent = () => {
+   changeShowComponent = () => {
     this.setState((state) => (
       {
-        showModal: !state.showModal,
-        isDisableButton: !state.isDisableButton
+        showModal: !state.showModal,        
       }
     ))
   }
 
+  handleClick = (selected) => {
+    this.setState({ selected })
+  }
+
   render() {
+
+    const content = [
+      { id: 1, item: 'a' },
+      { id: 2, item: 'b' },
+      { id: 3, item: 'c' },
+      { id: 4, item: 'd' },
+    ];
+
     return (
       <div className='main'>
-        <Button content="Clique aqui" isDisable={this.state.isDisableButton} showComponent={this.changeShowComponent} value='Título Show' />
+        <Button content={this.state.selected} isDisable={this.state.isDisableButton} showComponent={this.changeShowComponent} value='Título Show' />
         {this.state.showModal &&
           <Alert
-            hideComponent={this.changeShowComponent}
-                      > 
-            {{title: "Jantar", content: "arroz com feijão", timeSeconds: 2000}}          
-
+            handleClick={(selected) => this.handleClick(selected)}
+          >
+            {{ list: content, timeSeconds: 2000 }}
           </Alert>}
       </div>
     )
